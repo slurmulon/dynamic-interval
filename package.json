@@ -1,0 +1,35 @@
+{
+  "name": "dynamic-interval",
+  "version": "0.0.0",
+  "description": "setInterval but with a dynamic interval that can change on each tick",
+  "main": "index.js",
+  "scripts": {
+    "prepublish": "npm run babel",
+    "babel": "babel index.js --out-dir dist",
+    "test": "mocha test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/slurmulon/dynamic-interval.git"
+  },
+  "keywords": [
+    "setInterval",
+    "interval",
+    "iterate",
+    "timeout",
+    "wait",
+    "pause",
+    "halt"
+  ],
+  "author": "slurmulon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/slurmulon/dynamic-interval/issues"
+  },
+  "homepage": "https://github.com/slurmulon/dynamic-interval#readme",
+  "devDependencies": {
+    "babel-cli": "^6.23.0",
+    "babel-core": "^6.23.1",
+    "babel-preset-es2015": "^6.22.0"
+  }
+}
