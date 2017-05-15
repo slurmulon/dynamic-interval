@@ -21,7 +21,3 @@ export const setDynterval = (next, init) => {
   return interval
 }
 
-// TEST
-
-setDynterval(ctx => { console.log('ctx', ctx); return ctx.wait * 2  }, 50)
-
