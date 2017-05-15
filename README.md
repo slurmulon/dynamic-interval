@@ -1,6 +1,6 @@
 # dynamic-interval
 
-> :clock: The dynamic setInterval
+> :clock1: The dynamic setInterval
 
 Exactly like the all-familiar `setInterval` except that it also accepts a function that allows you calculate a new interval size on each iteration / tick.
 
