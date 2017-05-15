@@ -2,7 +2,7 @@
   "name": "dynamic-interval",
   "version": "0.0.0",
   "description": "setInterval but with a dynamic interval that can change on each tick",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "prepublish": "npm run babel",
     "babel": "babel index.js --out-dir dist",
