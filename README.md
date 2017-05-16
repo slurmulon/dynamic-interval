@@ -11,7 +11,7 @@ Also referred to as a "dynterval".
 This script doubles the amount of time between intervals on each iteration, starting with 50ms:
 
 ```js
-setDynerval(interval => {
+setDynterval(interval => {
   console.log('interval', interval)
 
   return interval.wait * 2
