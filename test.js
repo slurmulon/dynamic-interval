@@ -1,8 +1,6 @@
 const setDynterval = require('./dist/index').setDynterval
 
 setDynterval(ctx => {
-  // ctx.direction = 'up'
-
   console.log('waiting', ctx.wait, ctx.direction)
 
   if (ctx.direction === 'up') {
