@@ -11,7 +11,8 @@ Also referred to as a "dynterval".
 This script doubles the amount of time between intervals on each iteration, starting with 50ms:
 
 ```js
-// you can attach arbitrary properties to this object, but `wait` is what's used to determine the duration between each interval
+// you can attach arbitrary properties to this object, but
+// `wait` is what's used to determine the duration between each interval
 const config = { wait: 50 }
 
 setDynterval(interval => {
