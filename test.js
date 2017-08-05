@@ -9,13 +9,13 @@ setDynterval(ctx => {
     if (ctx.wait >= 500) {
       ctx.direction ='down'
     } else  {
-      return Object.assign(ctx, {wait: ctx.wait * 2})
+      return Object.assign(ctx, { wait: ctx.wait * 2 })
     }
   } else {
     if (ctx.wait <= 25) {
       ctx.direction = 'up'
     } else {
-      return Object.assign(ctx, {wait: ctx.wait / 2})
+      return Object.assign(ctx, { wait: ctx.wait / 2 })
     }
   }
 
