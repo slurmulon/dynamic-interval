@@ -2,11 +2,11 @@
 
 /**
  * @param {Function} next method that calculates and returns the interval gap for the next tick
- * @param {Object} init initial configuration object / context. ex: { wait: 50 }
+ * @param {Object} config initial configuration object / context. ex: { wait: 50 }
  * @returns {Function}
  */
-export const setDynterval = (next, init) => {
-  let context = Object.assign({ wait: 0 }, init)
+export const setDynterval = (next, config) => {
+  let context = Object.assign({ wait: 0 }, config)
 
   const step = () => {
     clearInterval(interval)
