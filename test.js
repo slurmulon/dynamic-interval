@@ -20,4 +20,3 @@ setDynterval(ctx => {
   // return ctx.wait
   return ctx
 }, { wait: 50, direction: 'up' })
-
