@@ -1,11 +1,9 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 // http://stackoverflow.com/a/7445863
-
-var pauseable = require('pauseable');
 
 /**
  * @param {Function} next method that calculates and returns the interval gap for the next tick
@@ -16,15 +14,14 @@ var setDynterval = exports.setDynterval = function setDynterval(next, config) {
   var context = Object.assign({ wait: 0 }, config);
 
   var step = function step() {
-    // clearInterval(interval)
-    interval.clear();
+    clearInterval(interval);
 
     context = next(context) || context;
 
-    interval = pauseable.setInterval(context.wait, step);
+    interval = setInterval(step, context.wait);
   };
 
-  var interval = pauseable.setInterval(context.wait, step);
+  var interval = setInterval(step, context.wait);
 
   return interval;
 };

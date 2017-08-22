@@ -1,0 +1,1 @@
+- Create a fork of this project that uses `pauseable`. That way this one can work with the native `clearInterval` while the other will adhere to `pauseable`'s API
