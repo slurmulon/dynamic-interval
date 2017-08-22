@@ -29,3 +29,5 @@ var setDynterval = exports.setDynterval = function setDynterval(next, config) {
 
   return interval;
 };
+
+exports.default = setDynterval;

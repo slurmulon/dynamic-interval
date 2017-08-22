@@ -25,3 +25,4 @@ export const setDynterval = (next, config) => {
   return interval
 }
 
+export default setDynterval
