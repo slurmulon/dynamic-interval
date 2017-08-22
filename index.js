@@ -6,6 +6,10 @@
  * @returns {Function}
  */
 export const setDynterval = (next, config) => {
+  if (config && config.constructor === Number) {
+    config = { wait: config }
+  }
+
   let context = Object.assign({ wait: 0 }, config)
 
   const step = () => {

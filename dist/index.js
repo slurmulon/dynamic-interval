@@ -11,6 +11,10 @@ Object.defineProperty(exports, "__esModule", {
  * @returns {Function}
  */
 var setDynterval = exports.setDynterval = function setDynterval(next, config) {
+  if (config && config.constructor === Number) {
+    config = { wait: config };
+  }
+
   var context = Object.assign({ wait: 0 }, config);
 
   var step = function step() {
