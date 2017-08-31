@@ -26,5 +26,7 @@ console.log('! set interval', test)
 setTimeout(() => {
   console.log('! cleared interval', test)
 
-  clearInterval(test)
+  test.clear()
+
+  setTimeout(() => console.log('done'), 1000)
 }, 4000)

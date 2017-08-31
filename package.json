@@ -1,6 +1,6 @@
 {
   "name": "dynamic-interval",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "setInterval but with a dynamic interval that can change on each tick",
   "main": "dist/index.js",
   "scripts": {
