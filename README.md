@@ -2,6 +2,8 @@
 
 > :clock1: The dynamic setInterval
 
+---
+
 Just like the all-familiar `setInterval` except that it also accepts a function that allows you calculate a new interval size on each iteration / tick.
 
 Also referred to as a "dynterval".
