@@ -13,6 +13,8 @@ This script doubles the amount of time between intervals on each iteration, star
 ```js
 // you can attach arbitrary properties to this object, but
 // `wait` is what's used to determine the duration between each interval
+import setDynterval from 'dynamic-interval'
+
 const config = { wait: 50 }
 
 const dynterval = setDynterval(interval => {
