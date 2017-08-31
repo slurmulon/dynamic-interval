@@ -22,7 +22,6 @@ export const setDynterval = (next, config) => {
 
   let interval = setInterval(step, context.wait)
 
-  // return interval
   return {
     get current () {
       return interval
