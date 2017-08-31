@@ -2,7 +2,7 @@
 
 /**
  * @param {Function} next method that calculates and returns the interval gap for the next tick
- * @param {Object} config initial configuration object / context. ex: { wait: 50 }
+ * @param {Object|Number} config initial configuration object / context. ex: { wait: 50 }
  * @returns {Function}
  */
 export const setDynterval = (next, config) => {
