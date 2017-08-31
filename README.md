@@ -2,7 +2,7 @@
 
 > :clock1: The dynamic setInterval
 
-Exactly like the all-familiar `setInterval` except that it also accepts a function that allows you calculate a new interval size on each iteration / tick.
+Just like the all-familiar `setInterval` except that it also accepts a function that allows you calculate a new interval size on each iteration / tick.
 
 Also referred to as a "dynterval".
 
@@ -15,7 +15,7 @@ This script doubles the amount of time between intervals on each iteration, star
 // `wait` is what's used to determine the duration between each interval
 const config = { wait: 50 }
 
-setDynterval(interval => {
+const dynterval = setDynterval(interval => {
   console.log('interval', interval)
 
   return { wait: interval.wait * 2 }
@@ -25,6 +25,12 @@ setDynterval(interval => {
 // interval { wait: 100 }
 // interval { wait: 200 }
 // ...
+
+// clear out the interval after 2 seconds
+// NOTE: clearInterval is not compatible, use the `clear` method instead
+setTimeout(() => {
+  dynterval.clear()
+}, 2000)
 ```
 
 ## License

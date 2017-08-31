@@ -1,6 +1,6 @@
 const setDynterval = require('./dist/index').setDynterval
 
-setDynterval(ctx => {
+const test = setDynterval(ctx => {
   console.log('waiting', ctx.wait, ctx.direction)
 
   if (ctx.direction === 'up') {
@@ -20,3 +20,13 @@ setDynterval(ctx => {
   // return ctx.wait
   return ctx
 }, { wait: 50, direction: 'up' })
+
+console.log('! set interval', test)
+
+setTimeout(() => {
+  console.log('! cleared interval', test)
+
+  test.clear()
+
+  setTimeout(() => console.log('done'), 1000)
+}, 4000)

@@ -27,7 +27,16 @@ var setDynterval = exports.setDynterval = function setDynterval(next, config) {
 
   var interval = setInterval(step, context.wait);
 
-  return interval;
+  // return interval
+  return {
+    get current() {
+      return interval;
+    },
+
+    clear: function clear() {
+      clearInterval(interval);
+    }
+  };
 };
 
 exports.default = setDynterval;
