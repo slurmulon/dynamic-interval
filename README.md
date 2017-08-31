@@ -27,7 +27,7 @@ const dynterval = setDynterval(interval => {
 // ...
 
 // clear out the interval after 2 seconds
-// NOTE: clearInterval is not compatible, use the `clear` method instead
+// NOTE: `window.clearInterval` is not compatible! use the `clear` method instead
 setTimeout(() => {
   dynterval.clear()
 }, 2000)
