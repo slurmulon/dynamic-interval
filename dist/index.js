@@ -7,8 +7,8 @@ Object.defineProperty(exports, "__esModule", {
 
 /**
  * @param {Function} next method that calculates and returns the interval gap for the next tick
- * @param {Object} config initial configuration object / context. ex: { wait: 50 }
- * @returns {Function}
+ * @param {Object|Number} config initial configuration object / context. ex: { wait: 50 }
+ * @returns {Object}
  */
 var setDynterval = exports.setDynterval = function setDynterval(next, config) {
   if (config && config.constructor === Number) {
@@ -27,10 +27,13 @@ var setDynterval = exports.setDynterval = function setDynterval(next, config) {
 
   var interval = setInterval(step, context.wait);
 
-  // return interval
   return {
     get current() {
       return interval;
+    },
+
+    get context() {
+      return context;
     },
 
     clear: function clear() {

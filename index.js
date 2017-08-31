@@ -27,6 +27,10 @@ export const setDynterval = (next, config) => {
       return interval
     },
 
+    get context () {
+      return context
+    },
+
     clear () {
       clearInterval(interval)
     }
