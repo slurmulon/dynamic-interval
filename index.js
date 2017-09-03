@@ -15,8 +15,7 @@ export const setDynterval = (next, config) => {
   const step = () => {
     clearInterval(interval)
 
-    context = next(context) || context
-
+    context  = next(context) || context
     interval = setInterval(step, context.wait)
   }
 
