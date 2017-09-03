@@ -37,7 +37,9 @@ var setDynterval = exports.setDynterval = function setDynterval(next, config) {
     },
 
     clear: function clear() {
-      clearInterval(interval);
+      setTimeout(function () {
+        return clearInterval(interval);
+      }, 0);
     }
   };
 };

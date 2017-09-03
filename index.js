@@ -32,7 +32,7 @@ export const setDynterval = (next, config) => {
     },
 
     clear () {
-      clearInterval(interval)
+      setTimeout(() => clearInterval(interval), 0)
     }
   }
 }
