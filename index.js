@@ -5,6 +5,8 @@
  * @param {Object|Number} config initial configuration object / context. ex: { wait: 50 }
  * @returns {Object}
  */
+// TODO: potentially support optional IEFE (i.e., immediately invoke the interval instead of waiting
+// TODO: support event hooks
 export const setDynterval = (next, config) => {
   if (config && config.constructor === Number) {
     config = { wait: config }
@@ -28,6 +30,10 @@ export const setDynterval = (next, config) => {
 
     get context () {
       return context
+    },
+
+    set context (value) {
+      context = value
     },
 
     clear () {
