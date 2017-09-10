@@ -3,11 +3,11 @@
 /**
  * @param {Function} next method that calculates and returns the interval gap for the next tick
  * @param {Object|Number} config initial configuration object / context. ex: { wait: 50 }
+ * @param {Boolean} [haste] when true, the `next` function will be invoked on instantiation (immediately)
  * @returns {Object}
  */
-// TODO: potentially support optional IEFE (i.e., immediately invoke the interval instead of waiting
 // TODO: support event hooks
-export const setDynterval = (next, config) => {
+export const setDynterval = (next, config, haste) => {
   if (config && config.constructor === Number) {
     config = { wait: config }
   }
@@ -15,11 +15,13 @@ export const setDynterval = (next, config) => {
   let context = Object.assign({ wait: 0 }, config)
 
   const step = () => {
-    clearInterval(interval)
+    if (interval) clearInterval(interval)
 
     context  = next(context) || context
     interval = setInterval(step, context.wait)
   }
+
+  if (haste) step()
 
   let interval = setInterval(step, context.wait)
 

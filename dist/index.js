@@ -8,11 +8,11 @@ Object.defineProperty(exports, "__esModule", {
 /**
  * @param {Function} next method that calculates and returns the interval gap for the next tick
  * @param {Object|Number} config initial configuration object / context. ex: { wait: 50 }
+ * @param {Boolean} [haste] when true, the `next` function will be invoked on instantiation (immediately)
  * @returns {Object}
  */
-// TODO: potentially support optional IEFE (i.e., immediately invoke the interval instead of waiting
 // TODO: support event hooks
-var setDynterval = exports.setDynterval = function setDynterval(next, config) {
+var setDynterval = exports.setDynterval = function setDynterval(next, config, haste) {
   if (config && config.constructor === Number) {
     config = { wait: config };
   }
@@ -20,11 +20,13 @@ var setDynterval = exports.setDynterval = function setDynterval(next, config) {
   var context = Object.assign({ wait: 0 }, config);
 
   var step = function step() {
-    clearInterval(interval);
+    if (interval) clearInterval(interval);
 
     context = next(context) || context;
     interval = setInterval(step, context.wait);
   };
+
+  if (haste) step();
 
   var interval = setInterval(step, context.wait);
 
