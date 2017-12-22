@@ -6,9 +6,6 @@
 
 import Rolex from 'rolex'
 
-// NOTE: gets called when we import Rolex, pointless
-// Rolex.conflictInterval()
-
 /**
  * @param {Function} next method that calculates and returns the interval gap for the next tick
  * @param {Object|Number} config initial configuration object / context. ex: { wait: 50 }
