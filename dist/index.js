@@ -3,9 +3,15 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-// http://stackoverflow.com/a/7445863
+exports.setDynterval = undefined;
 
-var setInterval = require('accurate-interval');
+var _rolex = require('rolex');
+
+var _rolex2 = _interopRequireDefault(_rolex);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+_rolex2.default.conflictInterval();
 
 /**
  * @param {Function} next method that calculates and returns the interval gap for the next tick
@@ -14,25 +20,31 @@ var setInterval = require('accurate-interval');
  * @returns {Object}
  */
 // TODO: support event hooks
+// http://stackoverflow.com/a/7445863
+
+// const setInterval = require('accurate-interval')
+// const setInterval = require('./interval')
+// const { setInterval, clearInterval } = require('rolex')
+
 var setDynterval = exports.setDynterval = function setDynterval(next, config) {
   if (config && config.constructor === Number) {
     config = { wait: config };
   }
 
-  var context = Object.assign({ wait: 0 }, config);
+  var context = Object.assign({ wait: 0, aligned: false, immediate: false }, config);
+  var prev = null;
 
-  var _Object$assign = Object.assign({ aligned: false, immediate: false }, context),
-      aligned = _Object$assign.aligned,
-      immediate = _Object$assign.immediate;
+  var _context = context,
+      aligned = _context.aligned,
+      immediate = _context.immediate;
+
 
   var step = function step() {
-    // if (interval) clearInterval(interval)
     if (interval) interval.clear();
 
-    // console.log('[dynamic-interval] stepping')
-
+    // // TODO: only reset the interval if the `wait` has changed from the previous value
     context = next(context) || context;
-    interval = setInterval(step, context.wait, { aligned: aligned, immediate: false });
+    interval = setInterval(step, context.wait, { aligned: aligned, immediate: immediate });
   };
 
   if (config.haste) {
@@ -55,8 +67,8 @@ var setDynterval = exports.setDynterval = function setDynterval(next, config) {
     },
 
     clear: function clear() {
-      interval.clear();
-      // setTimeout(() => clearInterval(interval), 0)
+      // interval.clear()
+      clearInterval(interval);
     }
   };
 };

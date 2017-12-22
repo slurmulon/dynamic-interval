@@ -1,6 +1,13 @@
 // http://stackoverflow.com/a/7445863
 
-const setInterval = require('accurate-interval')
+// const setInterval = require('accurate-interval')
+// const setInterval = require('./interval')
+// const { setInterval, clearInterval } = require('rolex')
+
+import Rolex from 'rolex'
+
+// NOTE: gets called when we import Rolex, pointless
+// Rolex.conflictInterval()
 
 /**
  * @param {Function} next method that calculates and returns the interval gap for the next tick
@@ -15,12 +22,14 @@ export const setDynterval = (next, config) => {
   }
 
   let context = Object.assign({ wait: 0, aligned: false, immediate: false }, config)
+  let prev = null
 
   const { aligned, immediate } = context
 
   const step = () => {
     if (interval) interval.clear()
 
+    // // TODO: only reset the interval if the `wait` has changed from the previous value
     context  = next(context) || context
     interval = setInterval(step, context.wait, { aligned, immediate })
   }
@@ -45,7 +54,8 @@ export const setDynterval = (next, config) => {
     },
 
     clear () {
-      interval.clear()
+      // interval.clear()
+      clearInterval(interval)
     }
   }
 }
