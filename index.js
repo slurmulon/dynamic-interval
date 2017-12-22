@@ -14,18 +14,15 @@ export const setDynterval = (next, config) => {
     config = { wait: config }
   }
 
-  let context = Object.assign({ wait: 0 }, config)
+  let context = Object.assign({ wait: 0, aligned: false, immediate: false }, config)
 
-  const { aligned, immediate } = Object.assign({ aligned: false, immediate: false }, context)
+  const { aligned, immediate } = context
 
   const step = () => {
-    // if (interval) clearInterval(interval)
     if (interval) interval.clear()
 
-    // console.log('[dynamic-interval] stepping')
-
     context  = next(context) || context
-    interval = setInterval(step, context.wait, { aligned, immediate: false })
+    interval = setInterval(step, context.wait, { aligned, immediate })
   }
 
   if (config.haste) {
@@ -49,7 +46,6 @@ export const setDynterval = (next, config) => {
 
     clear () {
       interval.clear()
-      // setTimeout(() => clearInterval(interval), 0)
     }
   }
 }
