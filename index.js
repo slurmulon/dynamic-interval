@@ -4,7 +4,11 @@
 // const setInterval = require('./interval')
 // const { setInterval, clearInterval } = require('rolex')
 
-import Rolex from 'rolex'
+// import Rolex from 'rolex'
+
+// const setInterval = require('request-interval')
+
+import * as workerTimers from 'worker-timers'
 
 /**
  * @param {Function} next method that calculates and returns the interval gap for the next tick
@@ -24,18 +28,23 @@ export const setDynterval = (next, config) => {
   const { aligned, immediate } = context
 
   const step = () => {
-    if (interval) interval.clear()
+    // if (interval) interval.clear()
+    if (interval) workerTimers.clearInterval(interval)
 
     // // TODO: only reset the interval if the `wait` has changed from the previous value
     context  = next(context) || context
-    interval = setInterval(step, context.wait, { aligned, immediate })
+    // interval = setInterval(step, context.wait, { aligned, immediate })
+    // interval = setInterval(context.wait, step)
+    interval = workerTimers.setInterval(step, context.wait)
   }
 
   if (config.haste) {
     context = next(context) || context
   }
 
-  let interval = setInterval(step, context.wait, { aligned, immediate })
+  // let interval = setInterval(step, context.wait, { aligned, immediate })
+  // let interval = setInterval(context.wait, step)
+  let interval = workerTimers.setInterval(step, context.wait)
 
   return {
     get current () {
@@ -52,7 +61,9 @@ export const setDynterval = (next, config) => {
 
     clear () {
       // interval.clear()
-      clearInterval(interval)
+      // clearInterval(interval)
+      // setInterval.clear(interval)
+      workerTimers.clearInterval(interval)
     }
   }
 }

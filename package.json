@@ -35,6 +35,8 @@
   "dependencies": {
     "accurate-interval": "^1.0.9",
     "performance-now": "^2.1.0",
-    "rolex": "^1.1.2"
+    "request-interval": "^2.0.0",
+    "rolex": "^1.1.2",
+    "worker-timers": "^4.0.20"
   }
 }
