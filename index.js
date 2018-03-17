@@ -2,12 +2,14 @@
 
 /**
  * @param {Function} next method that calculates and returns the interval gap for the next tick
- * @param {Object|Number} config initial configuration object / context. ex: { wait: 50 }
- * @param {Boolean} [haste] when true, the `next` function will be invoked on instantiation (immediately)
+ * @param {Object|Number} config initial configuration object / context. ex: { wait: 50, immediate: false }
  * @returns {Object}
  */
-// TODO: support event hooks
-export const setDynterval = (next, config, haste) => {
+export function setDynterval (next, config, api = { setInterval, clearInterval }) {
+  if (!api || !api.setInterval instanceof Function || !api.clearInterval instanceof Function) {
+    throw Error('Custom interval APIs must define both `setInterval` and `clearInterval` functions')
+  }
+
   if (config && config.constructor === Number) {
     config = { wait: config }
   }
@@ -15,15 +17,15 @@ export const setDynterval = (next, config, haste) => {
   let context = Object.assign({ wait: 0 }, config)
 
   const step = () => {
-    if (interval) clearInterval(interval)
+    if (interval) api.clearInterval(interval)
 
     context  = next(context) || context
-    interval = setInterval(step, context.wait)
+    interval = api.setInterval(step, context.wait)
   }
 
-  if (haste) step()
+  if (config.immediate) step()
 
-  let interval = setInterval(step, context.wait)
+  let interval = api.setInterval(step, context.wait)
 
   return {
     get current () {
@@ -39,7 +41,7 @@ export const setDynterval = (next, config, haste) => {
     },
 
     clear () {
-      setTimeout(() => clearInterval(interval), 0)
+      setTimeout(() => api.clearInterval(interval), 0)
     }
   }
 }
