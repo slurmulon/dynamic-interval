@@ -1,1 +1,7 @@
 - Create a fork of this project that uses `pauseable`. That way this one can work with the native `clearInterval` while the other will adhere to `pauseable`'s API
+- Abstract out the timer/interval backends so that we can support `accurate-timer`, `worker-timer` and `request-timer` implementations
+- Consider integrating `nanotimer` instead of `accurate-timer`: https://github.com/Krb686/nanotimer
+- Consider integrating `request-timer`: https://www.npmjs.com/package/request-interval
+- Consider integrating `chronos`: https://github.com/fitzgen/chronos
+- Consider replacing timer with `http://dbkaplun.github.io/rolex/`
+- Consider replacing timer with `https://www.npmjs.com/package/repeat`

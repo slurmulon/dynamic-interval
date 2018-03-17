@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "prepublish": "npm run babel",
-    "babel": "babel index.js --out-dir dist",
+    "babel": "babel *js --out-dir dist",
     "test": "mocha test"
   },
   "repository": {
@@ -34,7 +34,9 @@
   },
   "dependencies": {
     "accurate-interval": "^1.0.9",
+    "audio-context-timers": "^2.1.20",
     "performance-now": "^2.1.0",
+    "present": "^1.0.0",
     "request-interval": "^2.0.0",
     "rolex": "^1.1.2",
     "worker-timers": "^4.0.20"

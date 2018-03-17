@@ -1,14 +1,23 @@
 // http://stackoverflow.com/a/7445863
 
 // const setInterval = require('accurate-interval')
-// const setInterval = require('./interval')
+// const setInterval = require('./interval').default
 // const { setInterval, clearInterval } = require('rolex')
 
 // import Rolex from 'rolex'
 
 // const setInterval = require('request-interval')
 
-import * as workerTimers from 'worker-timers'
+import setInterval from './interval'
+
+// import * as audioContextTimers from 'audio-context-timers'
+
+// const setInterval = audioContextTimers.setInterval
+// const clearInterval = audioContextTimers.clearInterval
+
+// import * as workerTimers from 'worker-timers'
+
+console.log('das interval', setInterval)
 
 /**
  * @param {Function} next method that calculates and returns the interval gap for the next tick
@@ -28,14 +37,17 @@ export const setDynterval = (next, config) => {
   const { aligned, immediate } = context
 
   const step = () => {
-    // if (interval) interval.clear()
-    if (interval) workerTimers.clearInterval(interval)
+    if (interval) interval.clear() // accurate-interval
+    // if (interval) clearInterval(interval) // core, audio, Rolex
+    // if (interval) setInterval.clear(interval) // request-interval
+    // if (interval) workerTimers.clearInterval(interval)
 
     // // TODO: only reset the interval if the `wait` has changed from the previous value
     context  = next(context) || context
     // interval = setInterval(step, context.wait, { aligned, immediate })
     // interval = setInterval(context.wait, step)
-    interval = workerTimers.setInterval(step, context.wait)
+    interval = setInterval(step, context.wait)
+    // interval = workerTimers.setInterval(step, context.wait)
   }
 
   if (config.haste) {
@@ -44,7 +56,8 @@ export const setDynterval = (next, config) => {
 
   // let interval = setInterval(step, context.wait, { aligned, immediate })
   // let interval = setInterval(context.wait, step)
-  let interval = workerTimers.setInterval(step, context.wait)
+  let interval = setInterval(step, context.wait)
+  // let interval = workerTimers.setInterval(step, context.wait)
 
   return {
     get current () {
@@ -60,10 +73,10 @@ export const setDynterval = (next, config) => {
     },
 
     clear () {
-      // interval.clear()
-      // clearInterval(interval)
-      // setInterval.clear(interval)
-      workerTimers.clearInterval(interval)
+      interval.clear() // accurate-interval
+      // clearInterval(interval) // core, audio, Rolex
+      // setInterval.clear(interval) // request-interval
+      // workerTimers.clearInterval(interval) // worker-interval
     }
   }
 }
