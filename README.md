@@ -8,6 +8,16 @@ Just like the all-familiar `setInterval` except that it also accepts a function 
 
 Also referred to as a "dynterval".
 
+## Install
+
+```npm install slurmulon/dynamic-interval```
+
+then
+
+```js
+import setDynterval from 'dynamic-interval'
+```
+
 ## Interface
 
 ```setDynterval(<action>, <config>, <api>)```
@@ -21,21 +31,23 @@ The callback to invoke on each interval tick
 
 ### `config`
 
-Specifies the configuration of the interval
+Specifies the configuration of the interval. Passed into the `action` function as `context`.
 
 - **Type**: `Object`
 
-### `wait`
+- **Properties**:
 
-Species how long to wait between each interval tick
+  * #### `wait`
 
-- **Type**: `Number`
+    Species how long to wait between each interval tick
 
-### `immediate`
+    - **Type**: `Number`
 
-Determines if the interval should start immediately or wait before starting
+  * #### `immediate`
 
-- **Type**: `Boolean`
+    Determines if the interval should start immediately or wait before starting
+
+    - **Type**: `Boolean`
 
 ### `api`
 
@@ -54,14 +66,16 @@ This script doubles the amount of time between intervals on each iteration, star
 ```js
 import setDynterval from 'dynamic-interval'
 
-// you can attach arbitrary properties to this object, but `wait`
-// is what's used to determine the duration between each interval
-const config = { wait: 50 }
+// you can attach arbitrary properties to this object (in this case, `rate`), but
+// `wait` is what's used to determine the duration between each interval
+const config = { wait: 50, rate: 2 }
 
-const dynterval = setDynterval(interval => {
-  console.log('interval', interval)
+const dynterval = setDynterval(context => {
+  console.log('interval', context)
 
-  return { wait: interval.wait * 2 }
+  const next = context.wait * context.rate
+
+  return { ...context, wait: next }
 }, config)
 
 // interval { wait: 50 }
