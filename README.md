@@ -115,7 +115,7 @@ const setAccurateInterval = (func, wait) => {
 
     func(context)
 
-    return Object.assign(context, { wait: next, drift })
+    return { ...context, drift, wait: next }
   }, { wait, api: workerTimers })
 }
 
