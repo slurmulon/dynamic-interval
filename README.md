@@ -22,14 +22,14 @@ import setDynterval from 'dynamic-interval'
 
 ### ```setDynterval(<action>, <config>, <api>)```
 
-### `action`
+#### `action`
 
 The callback to invoke on each interval tick
 
 - **Type**: `Function`
 - **Required**
 
-### `config`
+#### `config`
 
 Specifies the configuration of the interval. Passed into the `action` function as `context`.
 
@@ -37,19 +37,19 @@ Specifies the configuration of the interval. Passed into the `action` function a
 
 - **Properties**:
 
-  * #### `wait`
+  * ##### `wait`
 
     Species how long to wait between each interval tick
 
     - **Type**: `Number`
 
-  * #### `immediate`
+  * ##### `immediate`
 
     Determines if the interval should start immediately or wait before starting
 
     - **Type**: `Boolean`
 
-### `api`
+#### `api`
 
 A custom interval `api` may be provided. It must define functions for both `setInterval` and `clearInterval`.
 
