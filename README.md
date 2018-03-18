@@ -56,7 +56,7 @@ const setAccurateInterval = (func, wait) => {
     const drift = Date.now() - expected
 
     if (drift > wait)
-      throw Error('something went really wrong')
+      throw Error(`that drift be crazy: ${drift}`)
 
     expected += wait
 
