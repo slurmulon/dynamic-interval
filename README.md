@@ -53,9 +53,27 @@ Specifies the configuration of the interval. Passed into the `action` function a
 
 A custom interval `api` may be provided. It must define functions for both `setInterval` and `clearInterval`.
 
-Uses `window.setInterval` and `window.clearInterval` when not defined by the user.
+ - **Type**: `Object`
 
-- **Type**: `Object`
+ - **Properties**:
+
+   * ##### `setInterval`
+
+     Defines how to create a new interval
+
+     - **Type**: `Function`
+     - **Signature**: `setInterval(func: Function, delay: Number)`
+     - **Returns**: `IntervalID`
+     - **Default**: [`WindowOrWorkerGlobalScope.setInterval`](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setInterval)
+
+   * ##### `clearInterval`
+
+     Defines how how to clear or cancel an interval
+
+     - **Type**: `Function`
+     - **Signature**: `clearInterval(id: IntervalID)`
+     - **Returns**: `void`
+     - **Default**: [`WindowOrWorkerGlobalScope.clearInterval`](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/clearInterval)
 
 ## Examples
 
