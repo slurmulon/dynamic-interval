@@ -6,7 +6,7 @@
  * @returns {Object}
  */
 export function setDynterval (next, config = {}, api = { setInterval, clearInterval }) {
-  if (!api || !api.setInterval instanceof Function || !api.clearInterval instanceof Function) {
+  if (!api || !(api.setInterval instanceof Function) || !(api.clearInterval instanceof Function)) {
     throw Error('Custom interval APIs must define both `setInterval` and `clearInterval` functions')
   }
 
