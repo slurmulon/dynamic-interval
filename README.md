@@ -8,6 +8,43 @@ Just like the all-familiar `setInterval` except that it also accepts a function 
 
 Also referred to as a "dynterval".
 
+## Interface
+
+```setDynterval(<action>, <config>, <api>)```
+
+### `action`
+
+The callback to invoke on each interval tick
+
+- **Type**: `Function`
+- **Required**
+
+### `config`
+
+Specifies the configuration of the interval
+
+- **Type**: `Object`
+
+### `wait`
+
+Species how long to wait between each interval tick
+
+- **Type**: `Number`
+
+### `immediate`
+
+Determines if the interval should start immediately or wait before starting
+
+- **Type**: `Boolean`
+
+### `api`
+
+A custom interval `api` may be provided. It must define functions for both `setInterval` and `clearInterval`.
+
+Uses `window.setInterval` and `window.clearInterval` when not defined by the user.
+
+- **Type**: `Object`
+
 ## Examples
 
 ### Basic
