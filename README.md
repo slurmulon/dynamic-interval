@@ -62,13 +62,13 @@ const setAccurateInterval = (func, wait) => {
 
     const next = Math.min(0, wait - drift)
 
-    func()
+    func(context)
 
-    return Object.assign(context, { wait: next })
+    return Object.assign(context, { wait: next, drift })
   }, { wait, api: workerTimers })
 }
 
-setAccurateInterval(() => console.log('tick'), 1000)
+setAccurateInterval(context => console.log('tick', context), 1000)
 ```
 
 ## License
