@@ -122,6 +122,15 @@ const setAccurateInterval = (func, wait) => {
 setAccurateInterval(context => console.log('tick', context), 1000)
 ```
 
+## Related
+
+- [`stateful-dynamic-interval`](https://github.com/slurmulon/stateful-dynamic-interval) adds pause, resume and grouping functionality to `dynamic-interval`.
+- [`accurate-interval`](https://npmjs.com/accurate-interval) an interval that automatically corrects for local drift on each tick. May be provided as an `api`.
+- [`audio-context-timers`](https://npmjs.com/audio-context-timers) an interval that uses the Web Audio API clock. May be provided as an `api`.
+- [`request-interval`](https://npmjs.com/request-interval) an interval that uses `requestAnimationFrame`. May be provided as an `api`.
+- [`rolex`](https://npmjs.com/rolex) a drift-minimizing `setInterval` replacement. Cannot be provided as an `api`.
+- [`worker-timers`](https://npmjs.com/worker-timers) an interval that uses Service Workers as a backend. May be provided as an `api`.
+
 ## License
 
 MIT
