@@ -41,7 +41,7 @@ setTimeout(() => {
 
 ### Advanced
 
-This script uses a custom interval `api` - in this case, `worker-timers`.
+This script uses a custom interval `api`. In this case, we're using [`worker-timers`](https://www.npmjs.com/package/worker-timers).
 
 It also calculates the amount of drift on each step and corrects for it during the subsequent step.
 
