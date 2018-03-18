@@ -8,7 +8,9 @@ Just like the all-familiar `setInterval` except that it also accepts a function 
 
 Also referred to as a "dynterval".
 
-## Example
+## Examples
+
+### Basic
 
 This script doubles the amount of time between intervals on each iteration, starting with 50ms:
 
@@ -35,6 +37,34 @@ const dynterval = setDynterval(interval => {
 setTimeout(() => {
   dynterval.clear()
 }, 2000)
+```
+
+### Advanced
+
+This script uses a custom interval `api` - in this case, `worker-timers`.
+
+It also calculates the amount of drift on each step and corrects for it during the subsequent step.
+
+```js
+import setDynterval from 'dynamic-interval'
+import * as workerTimers from 'worker-timers'
+
+const accurateInterval = (func, wait) => {
+  let expected = Date.now() + wait
+
+  return setDynterval(context => {
+    const drift = Date.now() - expected
+
+    if (drift > wait)
+      throw Error('something went really wrong')
+
+    expected += wait
+
+    const next = Math.min(0, wait - drift)
+
+    return Object.assign(context, { wait: next })
+  }, { wait, api: workerTimers })
+}
 ```
 
 ## License
