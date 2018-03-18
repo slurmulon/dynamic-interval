@@ -11,14 +11,15 @@ exports.setDynterval = setDynterval;
  * @param {Object|Number} config initial configuration object / context. ex: { wait: 50, immediate: false }
  * @returns {Object}
  */
-function setDynterval(next, config) {
+function setDynterval(next) {
+  var config = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
   var api = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : { setInterval: setInterval, clearInterval: clearInterval };
 
   if (!api || !api.setInterval instanceof Function || !api.clearInterval instanceof Function) {
     throw Error('Custom interval APIs must define both `setInterval` and `clearInterval` functions');
   }
 
-  if (config && config.constructor === Number) {
+  if (config.constructor === Number) {
     config = { wait: config };
   }
 

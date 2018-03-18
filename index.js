@@ -5,12 +5,12 @@
  * @param {Object|Number} config initial configuration object / context. ex: { wait: 50, immediate: false }
  * @returns {Object}
  */
-export function setDynterval (next, config, api = { setInterval, clearInterval }) {
+export function setDynterval (next, config = {}, api = { setInterval, clearInterval }) {
   if (!api || !api.setInterval instanceof Function || !api.clearInterval instanceof Function) {
     throw Error('Custom interval APIs must define both `setInterval` and `clearInterval` functions')
   }
 
-  if (config && config.constructor === Number) {
+  if (config.constructor === Number) {
     config = { wait: config }
   }
 
