@@ -1,11 +1,16 @@
 // http://stackoverflow.com/a/7445863
 
 /**
- * @param {Function} next method that calculates and returns the interval gap for the next tick
- * @param {Object|Number} config initial configuration object / context. ex: { wait: 50, immediate: false }
+ * @param {Function} action interval callback that may return a different duration for the next tick
+ * @param {Object|Number} [config] initial configuration object / context. ex: { wait: 50, immediate: false }
+ * @param {Object} [api] custom interval API (defaults to `window.setInterval` and `window.clearInterval`)
  * @returns {Object}
  */
-export function setDynterval (next, config = {}, api = { setInterval, clearInterval }) {
+export function setDynterval (action, config = {}, api = { setInterval, clearInterval }) {
+  if (!action || !(action instanceof Function)) {
+    throw Error('Interval callback must be a function')
+  }
+
   if (!api || !(api.setInterval instanceof Function) || !(api.clearInterval instanceof Function)) {
     throw Error('Custom interval APIs must define both `setInterval` and `clearInterval` functions')
   }
@@ -19,7 +24,7 @@ export function setDynterval (next, config = {}, api = { setInterval, clearInter
   const step = () => {
     if (interval) api.clearInterval(interval)
 
-    context  = next(context) || context
+    context  = action(context) || context
     interval = api.setInterval(step, context.wait)
   }
 
