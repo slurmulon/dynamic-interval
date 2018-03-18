@@ -20,7 +20,7 @@ import setDynterval from 'dynamic-interval'
 
 ## Interface
 
-```setDynterval(<action>, <config>, <api>)```
+### ```setDynterval(<action>, <config>, <api>)```
 
 ### `action`
 
