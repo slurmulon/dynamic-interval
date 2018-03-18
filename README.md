@@ -41,9 +41,9 @@ setTimeout(() => {
 
 ### Advanced
 
-This script uses a custom interval `api`. In this case, we're using [`worker-timers`](https://www.npmjs.com/package/worker-timers).
+This script calculates the amount of drift on each step and corrects for it during the subsequent step.
 
-It calculates the amount of drift on each step and corrects for it during the subsequent step.
+It uses a custom interval `api`. In this case, we're using [`worker-timers`](https://www.npmjs.com/package/worker-timers).
 
 ```js
 import setDynterval from 'dynamic-interval'
