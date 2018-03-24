@@ -6,7 +6,7 @@
   "scripts": {
     "prepublish": "npm run babel",
     "babel": "babel src --out-dir dist",
-    "test": "node test/index.js"
+    "test": "npm run babel && node test/index.js"
   },
   "repository": {
     "type": "git",
