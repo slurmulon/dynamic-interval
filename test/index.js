@@ -2,7 +2,7 @@ const setDynterval = require('../dist/index').default
 const sinon = require('sinon')
 const test = require('tape')
 
-test('basic', t => {
+test('static', t => {
   const spy = sinon.spy()
   const wait = 50
   const interval = setDynterval(spy, wait)
@@ -15,3 +15,20 @@ test('basic', t => {
   }, wait * 2.5)
 })
 
+test('dynamic', t => {
+  const spy = sinon.spy()
+  const start = 50
+  const interval = setDynterval(({ wait }) => {
+    const next = wait * 2
+
+    spy(next)
+
+    return { wait: next }
+  }, start)
+
+  setTimeout(() => {
+    t.equal(spy.callCount, 3)
+    t.end()
+    interval.clear()
+  }, 500)
+})
