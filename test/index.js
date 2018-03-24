@@ -8,9 +8,9 @@ test('static', t => {
   const interval = setDynterval(spy, wait)
 
   setTimeout(() => {
-    console.log('spy', spy.callCount)
     t.equal(spy.callCount, 2)
     t.end()
+
     interval.clear()
   }, wait * 2.5)
 })
@@ -29,6 +29,35 @@ test('dynamic', t => {
   setTimeout(() => {
     t.equal(spy.callCount, 3)
     t.end()
+
     interval.clear()
   }, 500)
+})
+
+test('context', t => {
+  const spy = sinon.spy()
+  const context = { wait: 50, foo: 'bar' }
+  const interval = setDynterval(ctx => {
+    t.equal(ctx.foo, context.foo)
+    t.end()
+
+    interval.clear()
+  }, context)
+})
+
+test('api', t => {
+  const setIntervalSpy = sinon.spy()
+  const clearIntervalSpy = sinon.spy()
+  const interval = setDynterval(ctx => {}, 25, { setInterval: setIntervalSpy, clearInterval: clearIntervalSpy })
+
+  setTimeout(() => {
+    t.equal(setIntervalSpy.callCount, 1)
+
+    interval.clear()
+
+    setTimeout(() => {
+      t.equal(clearIntervalSpy.callCount, 1)
+      t.end()
+    }, 0)
+  }, 50)
 })

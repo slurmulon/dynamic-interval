@@ -58,6 +58,7 @@ function setDynterval(action) {
       setTimeout(function () {
         return api.clearInterval(interval);
       }, 0);
+      // api.clearInterval(interval)
     }
   };
 }
