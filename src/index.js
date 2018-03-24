@@ -47,6 +47,7 @@ export function setDynterval (action, config = {}, api = { setInterval, clearInt
 
     clear () {
       setTimeout(() => api.clearInterval(interval), 0)
+      // api.clearInterval(interval)
     }
   }
 }
