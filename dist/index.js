@@ -39,7 +39,7 @@ function setDynterval(action) {
 
   if (config.immediate) step();
 
-  var interval = api.setInterval(step, context.wait);
+  var interval = api.setInterval(step.bind(this), context.wait);
 
   return {
     get current() {
@@ -58,6 +58,7 @@ function setDynterval(action) {
       setTimeout(function () {
         return api.clearInterval(interval);
       }, 0);
+      // api.clearInterval(interval)
     }
   };
 }

@@ -30,7 +30,7 @@ export function setDynterval (action, config = {}, api = { setInterval, clearInt
 
   if (config.immediate) step()
 
-  let interval = api.setInterval(step, context.wait)
+  let interval = api.setInterval(step.bind(this), context.wait)
 
   return {
     get current () {
@@ -47,6 +47,7 @@ export function setDynterval (action, config = {}, api = { setInterval, clearInt
 
     clear () {
       setTimeout(() => api.clearInterval(interval), 0)
+      // api.clearInterval(interval)
     }
   }
 }
