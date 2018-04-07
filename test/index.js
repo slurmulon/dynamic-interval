@@ -45,7 +45,7 @@ test('context', t => {
   }, context)
 })
 
-test('api', t => {
+test('api [interval]', t => {
   const setIntervalSpy = sinon.spy()
   const clearIntervalSpy = sinon.spy()
   const interval = setDynterval(ctx => {}, 25, { setInterval: setIntervalSpy, clearInterval: clearIntervalSpy })
@@ -60,4 +60,22 @@ test('api', t => {
       t.end()
     }, 0)
   }, 50)
+})
+
+test('api [timeout]', t => {
+  const setTimeoutSpy = sinon.spy()
+  const clearTimeoutSpy = sinon.spy()
+  const interval = setDynterval(ctx => {}, 25, { setTimeout: setTimeoutSpy, clearTimeout: clearTimeoutSpy })
+
+  setTimeout(() => {
+    t.equal(setTimeoutSpy.callCount, 1)
+
+    interval.clear()
+
+    setTimeout(() => {
+      t.equal(clearTimeoutSpy.callCount, 1)
+      t.end()
+    }, 0)
+  }, 50)
+
 })

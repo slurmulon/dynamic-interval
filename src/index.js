@@ -3,16 +3,20 @@
 /**
  * @param {Function} action interval callback that may return a different duration for the next tick
  * @param {Object|Number} [config] initial configuration object / context. ex: { wait: 50, immediate: false }
- * @param {Object} [api] custom interval API (defaults to `window.setInterval` and `window.clearInterval`)
+ * @param {Object} [api] custom interval API (defaults to `window.setTimeout` and `window.clearTimeout`)
  * @returns {Object}
  */
-export function setDynterval (action, config = {}, api = { setInterval, clearInterval }) {
+export function setDynterval (action, config = { }, api = { setTimeout, clearTimeout, setInterval, clearInterval }) {
   if (!action || !(action instanceof Function)) {
     throw Error('Interval callback must be a function')
   }
 
-  if (!api || !(api.setInterval instanceof Function) || !(api.clearInterval instanceof Function)) {
-    throw Error('Custom interval APIs must define both `setInterval` and `clearInterval` functions')
+  if (!api ||
+     (!(api.setTimeout    instanceof Function) ||
+      !(api.clearTimeout  instanceof Function)) &&
+     (!(api.setInterval   instanceof Function) ||
+      !(api.clearInterval instanceof Function))) {
+    throw Error('Custom interval APIs must define either `setTimeout` and `clearTimeout` OR `setInterval` and `clearInterval` functions')
   }
 
   if (config.constructor === Number) {
@@ -21,16 +25,19 @@ export function setDynterval (action, config = {}, api = { setInterval, clearInt
 
   let context = Object.assign({ wait: 0 }, config)
 
+  const next  = api.setTimeout   || api.setInterval
+  const clear = api.clearTimeout || api.clearInterval
+
   const step = () => {
-    if (interval) api.clearInterval(interval)
+    if (interval) api.clearTimeout(interval)
 
     context  = action(context) || context
-    interval = api.setInterval(step, context.wait)
+    interval = next(step, context.wait)
   }
 
   if (config.immediate) step()
 
-  let interval = api.setInterval(step.bind(this), context.wait)
+  let interval = next(step.bind(this), context.wait)
 
   return {
     get current () {
@@ -46,8 +53,8 @@ export function setDynterval (action, config = {}, api = { setInterval, clearInt
     },
 
     clear () {
-      setTimeout(() => api.clearInterval(interval), 0)
-      // api.clearInterval(interval)
+      setTimeout(() => clear(interval), 0)
+      // clear(interval)
     }
   }
 }
