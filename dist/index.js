@@ -34,7 +34,7 @@ function setDynterval(action) {
   var _clear = api.clearTimeout || api.clearInterval;
 
   var step = function step() {
-    if (interval) api.clearTimeout(interval);
+    if (interval) _clear(interval);
 
     context = action(context) || context;
     interval = next(step, context.wait);

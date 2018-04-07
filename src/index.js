@@ -29,7 +29,7 @@ export function setDynterval (action, config = { }, api = { setTimeout, clearTim
   const clear = api.clearTimeout || api.clearInterval
 
   const step = () => {
-    if (interval) api.clearTimeout(interval)
+    if (interval) clear(interval)
 
     context  = action(context) || context
     interval = next(step, context.wait)
