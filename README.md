@@ -57,6 +57,24 @@ A custom interval `api` may be provided. It must define functions for both `setI
 
  - **Properties**:
 
+   * ##### `setTimeout`
+
+     Defines how to create a new timeout
+
+     - **Type**: `Function`
+     - **Signature**: `setTimeout(func: Function, delay: Number)`
+     - **Returns**: `TimeoutID`
+     - **Default**: [`WindowOrWorkerGlobalScope.setTimeout`](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout)
+
+   * ##### `clearTimeout`
+
+     Defines how how to clear or cancel a timeout
+
+     - **Type**: `Function`
+     - **Signature**: `clearTimeout(id: TimeoutID)`
+     - **Returns**: `void`
+     - **Default**: [`WindowOrWorkerGlobalScope.clearTimeout`](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/clearTimeout)
+
    * ##### `setInterval`
 
      Defines how to create a new interval
@@ -74,6 +92,8 @@ A custom interval `api` may be provided. It must define functions for both `setI
      - **Signature**: `clearInterval(id: IntervalID)`
      - **Returns**: `void`
      - **Default**: [`WindowOrWorkerGlobalScope.clearInterval`](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/clearInterval)
+
+
 
 ## Examples
 
