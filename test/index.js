@@ -45,7 +45,7 @@ test('context', t => {
   }, context)
 })
 
-test('step', t => {
+test('step [context]', t => {
   const nextCtx = { newCtx: true, wait: 25 }
   const interval = setDynterval(ctx => ({ ...ctx, ...nextCtx }), nextCtx.wait)
 
@@ -55,6 +55,24 @@ test('step', t => {
     t.deepEqual(interval.context, nextCtx)
     t.end()
   }, 50)
+})
+
+test('step [interval]', t => {
+  let id = 0
+  const mockSetTimeout = (cb, wait) => {
+    id = setTimeout(cb, wait)
+
+    return id
+  }
+
+  const interval = setDynterval(() => {}, 2.5, { setTimeout: mockSetTimeout, clearTimeout })
+
+  setTimeout(() => {
+    interval.clear()
+
+    t.equal(interval.current, id)
+    t.end()
+  }, 20)
 })
 
 test('api [interval]', t => {
