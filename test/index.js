@@ -75,6 +75,27 @@ test('step [interval]', t => {
   }, 20)
 })
 
+test('step [clear]', t => {
+  const stubInterval = Symbol('tick')
+  const spyClearTimeout = sinon.spy()
+  const mockSetTimeout = (action, wait) => {
+    const cb = () => {
+      try {
+        action()
+      } catch (e) {
+        t.true(spyClearTimeout.calledWith(stubInterval))
+        t.end()
+      }
+    }
+
+    setTimeout(cb, wait)
+
+    return stubInterval
+  }
+
+  setDynterval(() => { throw Error('interrupt') }, 1, { setTimeout: mockSetTimeout, clearTimeout: spyClearTimeout })
+})
+
 test('api [interval]', t => {
   const setIntervalSpy = sinon.spy()
   const clearIntervalSpy = sinon.spy()
