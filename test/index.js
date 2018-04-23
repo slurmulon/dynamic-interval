@@ -76,7 +76,7 @@ test('step [interval]', t => {
 })
 
 test('step [clear]', t => {
-  const stubInterval = Symbol('tick')
+  const stubInterval = Symbol('interval')
   const spyClearTimeout = sinon.spy()
   const mockSetTimeout = (action, wait) => {
     const cb = () => {
