@@ -65,7 +65,7 @@ test('step [interval]', t => {
     return id
   }
 
-  const interval = setDynterval(() => {}, 2.5, { setTimeout: mockSetTimeout, clearTimeout })
+  const interval = setDynterval(() => {}, 1, { setTimeout: mockSetTimeout, clearTimeout })
 
   setTimeout(() => {
     interval.clear()
