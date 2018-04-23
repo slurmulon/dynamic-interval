@@ -45,6 +45,18 @@ test('context', t => {
   }, context)
 })
 
+test('step', t => {
+  const nextCtx = { newCtx: true, wait: 25 }
+  const interval = setDynterval(ctx => ({ ...ctx, ...nextCtx }), nextCtx.wait)
+
+  setTimeout(() => {
+    interval.clear()
+
+    t.deepEqual(interval.context, nextCtx)
+    t.end()
+  }, 50)
+})
+
 test('api [interval]', t => {
   const setIntervalSpy = sinon.spy()
   const clearIntervalSpy = sinon.spy()
@@ -77,5 +89,4 @@ test('api [timeout]', t => {
       t.end()
     }, 0)
   }, 50)
-
 })
