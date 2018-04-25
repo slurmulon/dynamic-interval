@@ -6,7 +6,7 @@
 
 [![CircleCI](https://circleci.com/gh/slurmulon/dynamic-interval.svg?style=svg)](https://circleci.com/gh/slurmulon/dynamic-interval)
 
-Just like the all familiar `setInterval` except that its callback allows you calculate a new interval duration on each iteration / tick.
+Just like the all familiar `setInterval` except that its callback allows you to calculate a new interval duration on each iteration / tick.
 
 Also referred to as a "dynterval".
 
