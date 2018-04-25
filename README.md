@@ -94,7 +94,7 @@ const setAccurateInterval = (func, wait) => {
     func(context)
 
     return { ...context, drift, wait: next }
-  }, { wait, api: workerTimers })
+  }, wait, workerTimers)
 }
 
 setAccurateInterval(context => console.log('tick', context), 1000)
