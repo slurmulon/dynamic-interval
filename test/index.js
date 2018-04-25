@@ -18,8 +18,8 @@ test('static', t => {
 test('dynamic', t => {
   const spy = sinon.spy()
   const start = 50
-  const interval = setDynterval(({ wait }) => {
-    const next = wait * 2
+  const interval = setDynterval(ctx => {
+    const next = ctx.wait * 2
 
     spy(next)
 
