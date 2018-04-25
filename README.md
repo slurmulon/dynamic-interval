@@ -4,7 +4,8 @@
 
 ---
 
-[![CircleCI](https://circleci.com/gh/slurmulon/dynamic-interval.svg?style=svg)](https://circleci.com/gh/slurmulon/dynamic-interval)
+[![build](https://img.shields.io/circleci/project/github/RedSparr0w/node-csgo-parser.svg?style=for-the-badge)](https://circleci.com/gh/slurmulon/dynamic-interval)
+[![npm](https://img.shields.io/npm/v/dynamic-interval.svg?style=for-the-badge)](https://npmjs.com/package/dynamic-interval)
 
 Just like the all familiar `setInterval` except that its callback allows you to calculate a new interval duration on each iteration / tick.
 
