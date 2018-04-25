@@ -24,7 +24,7 @@ Also referred to as a "dynterval".
 ## Install
 
 ```sh
-npm install slurmulon/dynamic-interval
+npm install dynamic-interval
 ```
 
 ## Usage
