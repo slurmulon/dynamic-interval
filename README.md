@@ -6,7 +6,7 @@
 
 [![CircleCI](https://circleci.com/gh/slurmulon/dynamic-interval.svg?style=svg)](https://circleci.com/gh/slurmulon/dynamic-interval)
 
-Just like the all familiar `setInterval` except that it also accepts a function that allows you calculate a new interval duration on each iteration / tick.
+Just like the all familiar `setInterval` except that its callback allows you calculate a new interval duration on each iteration / tick.
 
 Also referred to as a "dynterval".
 
@@ -56,9 +56,9 @@ const dynterval = setDynterval(context => {
   return { ...context, wait: next }
 }, config)
 
-// interval { wait: 50 }
-// interval { wait: 100 }
-// interval { wait: 200 }
+// interval { wait: 50,  rate: 2 }
+// interval { wait: 100, rate: 2 }
+// interval { wait: 200, rate: 2 }
 // ...
 
 // clear out the interval after 2 seconds
