@@ -10,98 +10,36 @@ Just like the all familiar `setInterval` except that it also accepts a function 
 
 Also referred to as a "dynterval".
 
+## Sections
+
+- [Install](#install)
+- [Usage](#usage)
+- [Examples](#examples)
+  * [Basic](#basic)
+  * [Advanced](#advanced)
+- [Interface](#interface)
+- [Related](#related)
+- [License](#license)
+
 ## Install
 
-```npm install slurmulon/dynamic-interval```
+```sh
+npm install slurmulon/dynamic-interval
+```
 
-then
+## Usage
 
 ```js
 import setDynterval from 'dynamic-interval'
+
+const dynterval = setDynterval(ctx => console.log('tick!', ctx), 100)
 ```
-
-## Interface
-
-### ```setDynterval(<action>, <config>, <api>)```
-
-#### `action`
-
-The callback to invoke on each interval tick
-
-- **Type**: `Function`
-- **Required**
-
-#### `config`
-
-Specifies the configuration of the interval. Passed into the `action` function as `context`.
-
-- **Type**: `Object`
-
-- **Properties**:
-
-  * ##### `wait`
-
-    Species how long to wait between each interval tick
-
-    - **Type**: `Number`
-
-  * ##### `immediate`
-
-    Determines if the interval should start immediately or wait before starting
-
-    - **Type**: `Boolean`
-
-#### `api`
-
-A custom interval `api` may be provided. It must define functions for both `setInterval` and `clearInterval`.
-
- - **Type**: `Object`
-
- - **Properties**:
-
-   * ##### `setTimeout`
-
-     Defines how to create a new timeout
-
-     - **Type**: `Function`
-     - **Signature**: `setTimeout(func: Function, delay: Number)`
-     - **Returns**: `TimeoutID`
-     - **Default**: [`WindowOrWorkerGlobalScope.setTimeout`](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout)
-
-   * ##### `clearTimeout`
-
-     Defines how how to clear or cancel a timeout
-
-     - **Type**: `Function`
-     - **Signature**: `clearTimeout(id: TimeoutID)`
-     - **Returns**: `void`
-     - **Default**: [`WindowOrWorkerGlobalScope.clearTimeout`](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/clearTimeout)
-
-   * ##### `setInterval`
-
-     Defines how to create a new interval
-
-     - **Type**: `Function`
-     - **Signature**: `setInterval(func: Function, delay: Number)`
-     - **Returns**: `IntervalID`
-     - **Default**: [`WindowOrWorkerGlobalScope.setInterval`](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setInterval)
-
-   * ##### `clearInterval`
-
-     Defines how how to clear or cancel an interval
-
-     - **Type**: `Function`
-     - **Signature**: `clearInterval(id: IntervalID)`
-     - **Returns**: `void`
-     - **Default**: [`WindowOrWorkerGlobalScope.clearInterval`](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/clearInterval)
-
-
 
 ## Examples
 
 ### Basic
 
-This script doubles the amount of time between intervals on each iteration, starting with 50ms:
+This script doubles the duration of the interval on each iteration, starting with 50ms:
 
 ```js
 import setDynterval from 'dynamic-interval'
@@ -161,6 +99,89 @@ const setAccurateInterval = (func, wait) => {
 
 setAccurateInterval(context => console.log('tick', context), 1000)
 ```
+
+## Interface
+
+### ```setDynterval(<action>, <wait|config>, <api>)```
+
+#### `action`
+
+The callback to invoke on each interval tick
+
+- **Type**: `Function`
+- **Required**
+
+#### `wait`
+
+Specifies the duration of each interval (i.e. the amount of time to wait between each tick)
+
+- **Type**: `Number`
+
+
+#### `config`
+
+Specifies the configuration of the interval. Passed into the `action` function as `context`.
+
+- **Type**: `Object`
+
+- **Properties**:
+
+  * ##### `wait`
+
+    Specifies the duration of each interval
+
+    - **Type**: `Number`
+
+  * ##### `immediate`
+
+    Determines if the interval should start immediately or wait one interval before starting
+
+    - **Type**: `Boolean`
+
+#### `api`
+
+A custom interval `api` may be provided. It must define functions for both `setInterval` and `clearInterval`.
+
+ - **Type**: `Object`
+
+ - **Properties**:
+
+   * ##### `setTimeout`
+
+     Defines how to create a new timeout
+
+     - **Type**: `Function`
+     - **Signature**: `setTimeout(func: Function, delay: Number)`
+     - **Returns**: `TimeoutID`
+     - **Default**: [`WindowOrWorkerGlobalScope.setTimeout`](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout)
+
+   * ##### `clearTimeout`
+
+     Defines how how to clear or cancel a timeout
+
+     - **Type**: `Function`
+     - **Signature**: `clearTimeout(id: TimeoutID)`
+     - **Returns**: `void`
+     - **Default**: [`WindowOrWorkerGlobalScope.clearTimeout`](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/clearTimeout)
+
+   * ##### `setInterval`
+
+     Defines how to create a new interval
+
+     - **Type**: `Function`
+     - **Signature**: `setInterval(func: Function, delay: Number)`
+     - **Returns**: `IntervalID`
+     - **Default**: [`WindowOrWorkerGlobalScope.setInterval`](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setInterval)
+
+   * ##### `clearInterval`
+
+     Defines how how to clear or cancel an interval
+
+     - **Type**: `Function`
+     - **Signature**: `clearInterval(id: IntervalID)`
+     - **Returns**: `void`
+     - **Default**: [`WindowOrWorkerGlobalScope.clearInterval`](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/clearInterval)
+
 
 ## Related
 
