@@ -89,7 +89,7 @@ const setAccurateInterval = (func, wait) => {
 
     expected += wait
 
-    const next = Math.min(0, wait - drift)
+    const next = Math.max(0, wait - drift)
 
     func(context)
 
