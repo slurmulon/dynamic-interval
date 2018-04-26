@@ -7,7 +7,7 @@
 [![build](https://img.shields.io/circleci/project/github/RedSparr0w/node-csgo-parser.svg?style=for-the-badge)](https://circleci.com/gh/slurmulon/dynamic-interval)
 [![npm](https://img.shields.io/npm/v/dynamic-interval.svg?style=for-the-badge)](https://npmjs.com/package/dynamic-interval)
 
-Just like the all familiar `setInterval` except that its callback allows you to calculate a new interval duration on each iteration / tick.
+`setInterval` with the ability to specify a new interval duration on each tick.
 
 Also referred to as a "dynterval".
 
@@ -158,7 +158,7 @@ A custom interval `api` may be provided. It must define functions for both `setI
 
    * ##### `clearTimeout`
 
-     Defines how how to clear or cancel a timeout
+     Defines how to clear or cancel a timeout
 
      - **Type**: `Function`
      - **Signature**: `clearTimeout(id: TimeoutID)`
@@ -176,7 +176,7 @@ A custom interval `api` may be provided. It must define functions for both `setI
 
    * ##### `clearInterval`
 
-     Defines how how to clear or cancel an interval
+     Defines how to clear or cancel an interval
 
      - **Type**: `Function`
      - **Signature**: `clearInterval(id: IntervalID)`
