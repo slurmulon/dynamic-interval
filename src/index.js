@@ -23,6 +23,7 @@ export function setDynterval (action, config = { }, api = { setTimeout, clearTim
     config = { wait: config }
   }
 
+  let interval
   let context = Object.assign({ wait: 0 }, config)
 
   const next  = api.setTimeout   || api.setInterval
@@ -35,9 +36,11 @@ export function setDynterval (action, config = { }, api = { setTimeout, clearTim
     interval = next(step, context.wait)
   }
 
-  if (config.immediate) step()
-
-  let interval = next(step.bind(this), context.wait)
+  if (!config.immediate) {
+    interval = next(step, context.wait)
+  } else {
+    step()
+  }
 
   return {
     get current () {

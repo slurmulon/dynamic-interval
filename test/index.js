@@ -96,6 +96,36 @@ test('step [clear]', t => {
   setDynterval(() => { throw Error('interrupt') }, 1, { setTimeout: mockSetTimeout, clearTimeout: spyClearTimeout })
 })
 
+test('config [immediate = true]', t => {
+  const cb = sinon.spy()
+  const wait = 5
+  const interval = setDynterval(cb, { wait, immediate: true })
+
+  t.true(cb.calledOnce)
+
+  setTimeout(() => {
+    interval.clear()
+
+    t.true(cb.calledTwice)
+    t.end()
+  }, wait + 1)
+})
+
+test('config [immediate = false]', t => {
+  const cb = sinon.spy()
+  const wait = 5
+  const interval = setDynterval(cb, { wait, immediate: false })
+
+  t.true(cb.notCalled)
+
+  setTimeout(() => {
+    interval.clear()
+
+    t.true(cb.calledOnce)
+    t.end()
+  }, wait + 1)
+})
+
 test('api [interval]', t => {
   const setIntervalSpy = sinon.spy()
   const clearIntervalSpy = sinon.spy()
