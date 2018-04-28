@@ -8,7 +8,7 @@
  */
 export function setDynterval (action, config = { }, api = { setTimeout, clearTimeout, setInterval, clearInterval }) {
   if (!action || !(action instanceof Function)) {
-    throw Error('Interval callback must be a function')
+    throw TypeError('Interval callback must be a function')
   }
 
   if (!api ||
