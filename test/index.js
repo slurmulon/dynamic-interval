@@ -226,7 +226,7 @@ test('api [invalid-interval:partial]', t => {
   t.end()
 })
 
-test('api [invalid-timeout:bad-type]', t => {
+test('api [invalid-interval:bad-type]', t => {
   try {
     setDynterval(() => {}, 1, { setInterval: 0, clearInterval: 0 })
   } catch (e) {
