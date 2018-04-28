@@ -45,6 +45,38 @@ test('context', t => {
   }, context)
 })
 
+test('context [setter]', t => {
+  const interval = setDynterval(ctx => {}, 1)
+  const expected = { works: true }
+
+  interval.context = expected
+  interval.clear()
+
+  t.equal(interval.context, expected)
+  t.end()
+})
+
+test('action [valid]', t => {
+  const spy = sinon.spy()
+
+  setDynterval(spy, 1).clear()
+
+  t.pass()
+  t.end()
+})
+
+test('action [invalid]', t => {
+  try {
+    setDynterval(0)
+
+    t.fail()
+  } catch (e) {
+    t.equal(e.constructor, TypeError)
+  }
+
+  t.end()
+})
+
 test('step [context]', t => {
   const nextCtx = { newCtx: true, wait: 25 }
   const interval = setDynterval(ctx => ({ ...ctx, ...nextCtx }), nextCtx.wait)
@@ -158,4 +190,48 @@ test('api [timeout]', t => {
       t.end()
     }, 0)
   }, 50)
+})
+
+test('api [invalid-timeout:partial]', t => {
+  try {
+    setDynterval(() => {}, 1, { setTimeout })
+
+    t.fail()
+  } catch (e) {
+    t.pass()
+  }
+
+  t.end()
+})
+
+test('api [invalid-timeout:bad-type]', t => {
+  try {
+    setDynterval(() => {}, 1, { setTimeout: 0, clearTimeout: 0 })
+  } catch (e) {
+    t.pass()
+  }
+
+  t.end()
+})
+
+test('api [invalid-interval:partial]', t => {
+  try {
+    setDynterval(() => {}, 1, { setInterval })
+
+    t.fail()
+  } catch (e) {
+    t.pass()
+  }
+
+  t.end()
+})
+
+test('api [invalid-timeout:bad-type]', t => {
+  try {
+    setDynterval(() => {}, 1, { setInterval: 0, clearInterval: 0 })
+  } catch (e) {
+    t.pass()
+  }
+
+  t.end()
 })
