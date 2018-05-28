@@ -6,7 +6,7 @@
   "scripts": {
     "prepublish": "npm run build",
     "build": "babel src --out-dir dist",
-    "test": "npm run babel && node test/index.js",
+    "test": "npm run build && node test/index.js",
     "cover": "nyc npm test && nyc report"
   },
   "repository": {
