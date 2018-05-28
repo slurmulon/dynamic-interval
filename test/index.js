@@ -158,30 +158,6 @@ test('config [immediate = false]', t => {
   }, wait + 1)
 })
 
-test('config [dynamic = true]', t => {
-  const wait = 1
-  const interval = setDynterval(ctx => ({ ...ctx, wait: ctx.wait * 2 }), { wait, dynamic: true })
-
-  setTimeout(() => {
-    interval.clear()
-
-    t.equal(interval.context.wait, 4)
-    t.end()
-  }, 4)
-})
-
-test('config [dynamic = false]', t => {
-  const wait = 1
-  const interval = setDynterval(ctx => ({ ...ctx, wait: ctx.wait * 2 }), { wait, dynamic: false })
-
-  setTimeout(() => {
-    interval.clear()
-
-    t.equal(interval.context.wait, 1)
-    t.end()
-  }, 4)
-})
-
 test('api [interval]', t => {
   const setIntervalSpy = sinon.spy()
   const clearIntervalSpy = sinon.spy()

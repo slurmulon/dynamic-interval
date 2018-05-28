@@ -20,7 +20,7 @@ export function setDynterval (action, config = { }, api = { setTimeout, clearTim
   }
 
   if (config.constructor === Number) {
-    config = { wait: config, dynamic: true }
+    config = { wait: config }
   }
 
   let interval
@@ -37,9 +37,7 @@ export function setDynterval (action, config = { }, api = { setTimeout, clearTim
   }
 
   if (!config.immediate) {
-    const cb = config.dynamic ? step : () => action(context)
-
-    interval = next(cb, config.wait)
+    interval = next(step, config.wait)
   } else {
     step()
   }
