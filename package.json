@@ -4,8 +4,8 @@
   "description": "The dynamic setInterval",
   "main": "dist/index.js",
   "scripts": {
-    "prepublish": "npm run babel",
-    "babel": "babel src --out-dir dist",
+    "prepublish": "npm run build",
+    "build": "babel src --out-dir dist",
     "test": "npm run babel && node test/index.js",
     "cover": "nyc npm test && nyc report"
   },
