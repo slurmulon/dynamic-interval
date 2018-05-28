@@ -138,6 +138,14 @@ Specifies the configuration of the interval. Passed into the `action` function a
     Determines if the interval should start immediately or wait one interval before starting
 
     - **Type**: `Boolean`
+    - **Default**: `false`
+
+  * #### `dynamic`
+
+    Determines if the interval is dynamic. If `false`, the interval will _not_ be cleared on each step.
+
+    - **Type**: `Boolean`
+    - **Default**: `true`
 
 #### `api`
 
@@ -147,7 +155,7 @@ A custom interval `api` may be provided. It must define functions for both `setI
 
  - **Properties**:
 
-   * ##### `setTimeout`
+   * **`setTimeout`**
 
      Defines how to create a new timeout
 
@@ -156,7 +164,7 @@ A custom interval `api` may be provided. It must define functions for both `setI
      - **Returns**: `TimeoutID`
      - **Default**: [`WindowOrWorkerGlobalScope.setTimeout`](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout)
 
-   * ##### `clearTimeout`
+   * **`clearTimeout`**
 
      Defines how to clear or cancel a timeout
 
@@ -165,7 +173,7 @@ A custom interval `api` may be provided. It must define functions for both `setI
      - **Returns**: `void`
      - **Default**: [`WindowOrWorkerGlobalScope.clearTimeout`](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/clearTimeout)
 
-   * ##### `setInterval`
+   * **`setInterval`**
 
      Defines how to create a new interval
 
@@ -174,7 +182,7 @@ A custom interval `api` may be provided. It must define functions for both `setI
      - **Returns**: `IntervalID`
      - **Default**: [`WindowOrWorkerGlobalScope.setInterval`](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setInterval)
 
-   * ##### `clearInterval`
+   * **`clearInterval`**
 
      Defines how to clear or cancel an interval
 
