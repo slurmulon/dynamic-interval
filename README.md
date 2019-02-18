@@ -33,7 +33,12 @@ npm install dynamic-interval
 ```js
 import setDynterval from 'dynamic-interval'
 
-const dynterval = setDynterval(ctx => console.log('tick!', ctx), 100)
+const action = context => console.log('tick!', context)
+const wait = 100
+
+const dynterval = setDynterval(action, wait)
+
+// tick! { wait: 100 }
 ```
 
 ## Examples
@@ -142,7 +147,7 @@ Specifies the configuration of the interval. Passed into the `action` function a
 
 #### `api`
 
-A custom interval `api` may be provided. It must define functions for both `setInterval` and `clearInterval`.
+A custom interval `api` may be provided. It must define functions for either `setInterval` and `clearInterval` or `setTimeout` and `clearTimeout`.
 
  - **Type**: `Object`
 
